@@ -8,11 +8,6 @@
   home.homeDirectory = "/Users/steven";
   home.stateVersion = "24.05";
 
-  # GUI applications
-  home.packages = with pkgs; [
-    _1password-gui
-  ];
-
   # Work-specific git config
   home.file."src/github.com/nscaledev/.gitconfig".text = ''
     [user]
@@ -65,5 +60,8 @@
       plugins = [ "git" ];
       theme = "robbyrussell";
     };
+    initContent = ''
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+    '';
   };
 }

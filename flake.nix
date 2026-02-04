@@ -15,6 +15,7 @@
     darwinConfigurations."wagestation" = nix-darwin.lib.darwinSystem {
       modules = [
         ./configuration.nix
+        ./brew.nix
         home-manager.darwinModules.home-manager
         {
           nixpkgs.overlays = [
