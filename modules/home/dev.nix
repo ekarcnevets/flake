@@ -28,6 +28,7 @@
     fzf
     tree
     htop
+    neovim    # Text editor
     gnumake   # GNU Make build tool
 
     # Language toolchains
@@ -43,6 +44,11 @@
     helm-docs         # Generate docs from Helm charts
     k9s               # Terminal UI for Kubernetes
     kubie             # Kubernetes context/namespace switcher
+
+    # Zsh plugins
+    zsh-vi-mode
+    zsh-fzf-tab
+    zsh-you-should-use
   ];
 
   programs.git = {
