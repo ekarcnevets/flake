@@ -1,4 +1,4 @@
-.PHONY: switch build update clean check help
+.PHONY: switch build update clean check fmt help
 
 # Default target
 help:
@@ -8,6 +8,7 @@ help:
 	@echo "  make update  - Update flake inputs"
 	@echo "  make clean   - Remove build artifacts"
 	@echo "  make check   - Check flake for errors"
+	@echo "  make fmt     - Format nix files"
 	@echo "  make help    - Show this help message"
 
 # Build and activate the configuration
@@ -29,3 +30,7 @@ clean:
 # Check flake for errors
 check:
 	nix flake check
+
+# Format nix files
+fmt:
+	nix fmt

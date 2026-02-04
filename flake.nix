@@ -12,8 +12,10 @@
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, claude-code-nix, codex-cli-nix }: {
+    # Formatter for 'nix fmt'
+    formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixpkgs-fmt;
+
     darwinConfigurations."wagestation" = nix-darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
       modules = [
         ./modules/system
         home-manager.darwinModules.home-manager
