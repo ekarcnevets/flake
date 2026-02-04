@@ -23,12 +23,28 @@
       show-recents = false;
     };
 
-    # Keyboard settings
+    # Finder settings
+    finder = {
+      AppleShowAllExtensions = true;
+      _FXShowPosixPathInTitle = true;
+      FXEnableExtensionChangeWarning = false;
+    };
+
+    # Keyboard and system settings
     NSGlobalDomain = {
       # Disable autocorrect
       NSAutomaticSpellingCorrectionEnabled = false;
       # Function keys as standard function keys
       "com.apple.keyboard.fnState" = true;
+      # Full keyboard access for all controls
+      AppleKeyboardUIMode = 3;
+      # Disable press-and-hold for keys (enables key repeat for vim)
+      ApplePressAndHoldEnabled = false;
+      # Fast key repeat
+      KeyRepeat = 2;
+      InitialKeyRepeat = 15;
+      # Drag windows from anywhere with modifier key
+      NSWindowShouldDragOnGesture = true;
     };
 
     # Disable Siri
