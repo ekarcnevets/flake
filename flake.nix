@@ -13,9 +13,9 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, claude-code-nix, codex-cli-nix }: {
     darwinConfigurations."wagestation" = nix-darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
       modules = [
-        ./configuration.nix
-        ./brew.nix
+        ./modules/system
         home-manager.darwinModules.home-manager
         {
           nixpkgs.overlays = [
@@ -24,7 +24,7 @@
           ];
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.steven = import ./home.nix;
+          home-manager.users.steven = import ./modules/home;
         }
       ];
     };

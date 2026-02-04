@@ -1,1 +1,15 @@
 .claude/settings.local.json
+
+# Nix build artifacts
+result
+result-*
+
+# Editor temp files
+*.swp
+*.swo
+*~
+.*.swp
+.*.swo
+
+# macOS
+.DS_Store

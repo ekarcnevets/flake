@@ -1,4 +1,8 @@
 { pkgs, ... }: {
+  imports = [
+    ./brew.nix
+  ];
+
   # Let Determinate Nix handle Nix configuration
   nix.enable = false;
 

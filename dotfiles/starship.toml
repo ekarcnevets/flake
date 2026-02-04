@@ -1,0 +1,156 @@
+# Starship Configuration
+
+# Timeout for commands (milliseconds)
+command_timeout = 1000
+
+# Add newline between prompts
+add_newline = true
+
+# Format: configure what's shown in the prompt
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$golang\
+$nodejs\
+$python\
+$rust\
+$docker_context\
+$kubernetes\
+$line_break\
+$character"""
+
+# Character (prompt symbol with vi mode)
+[character]
+success_symbol = "[❯](bold magenta)"
+error_symbol = "[❯](bold red)"
+vicmd_symbol = "[❮](bold cyan)"
+
+# Directory
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+# style = "bold cyan"
+
+# Git branch
+[git_branch]
+# style = "bold purple"
+
+# Git status
+[git_status]
+# style = "bold yellow"
+
+# Kubernetes
+[kubernetes]
+disabled = false
+format = '[(⎈ $context)](#4884ED) '
+# Lighter: #5B9BF5 | Darker: #326CE5
+
+# NKS clusters
+[[kubernetes.contexts]]
+context_pattern = ".*nks-dev-glo1.*"
+context_alias = "nks-dev"
+
+[[kubernetes.contexts]]
+context_pattern = ".*nks-europe-west4.*"
+context_alias = "nks-prod"
+
+[[kubernetes.contexts]]
+context_pattern = ".*nks-uat-europe-west2.*"
+context_alias = "nks-uat"
+
+# InfaaS AMD clusters
+[[kubernetes.contexts]]
+context_pattern = ".*infaas-amd-dev-glo1.*"
+context_alias = "infaas-amd-dev"
+
+[[kubernetes.contexts]]
+context_pattern = ".*infaas-amd-glo1.*"
+context_alias = "infaas-amd-prod"
+
+[[kubernetes.contexts]]
+context_pattern = ".*infaas-amd-uat-glo1.*"
+context_alias = "infaas-amd-uat"
+
+[[kubernetes.contexts]]
+context_pattern = ".*infaas-amd-knative-dev-glo1.*"
+context_alias = "infaas-amd-knative"
+
+# InfaaS Nvidia clusters
+[[kubernetes.contexts]]
+context_pattern = ".*infaas-nvidia-dev-glo1.*"
+context_alias = "infaas-nvd-dev"
+
+[[kubernetes.contexts]]
+context_pattern = ".*infaas-nvidia-glo1.*"
+context_alias = "infaas-nvd-prod"
+
+[[kubernetes.contexts]]
+context_pattern = ".*infaas-nvidia-uat-glo1.*"
+context_alias = "infaas-nvd-uat"
+
+# Product management
+[[kubernetes.contexts]]
+context_pattern = ".*product-mgmt-dev-glo1.*"
+context_alias = "product-mgmt-dev"
+
+[[kubernetes.contexts]]
+context_pattern = ".*product-mgmt-glo1.*"
+context_alias = "product-mgmt-prod"
+
+[[kubernetes.contexts]]
+context_pattern = ".*product-mgmt-uat-glo1.*"
+context_alias = "product-mgmt-uat"
+
+# Fleet management
+[[kubernetes.contexts]]
+context_pattern = ".*fleet-mgr-dev-glo1.*"
+context_alias = "fleet-mgr-dev"
+
+[[kubernetes.contexts]]
+context_pattern = ".*fleet-mgr-prod-glo1.*"
+context_alias = "fleet-mgr-prod"
+
+# Observability
+[[kubernetes.contexts]]
+context_pattern = ".*observability-dev-glo1.*"
+context_alias = "o11y-dev"
+
+[[kubernetes.contexts]]
+context_pattern = ".*observability-glo1.*"
+context_alias = "o11y-prod"
+
+# Management/Infrastructure
+[[kubernetes.contexts]]
+context_pattern = ".*mgmt-dev-glo1.*"
+context_alias = "mgmt-dev"
+
+# Experimental/Other
+[[kubernetes.contexts]]
+context_pattern = ".*chaos-mi250-dev-glo1.*"
+context_alias = "chaos-dev"
+
+[[kubernetes.contexts]]
+context_pattern = ".*wo11y-dev-glo1.*"
+context_alias = "wo11y-dev"
+
+# Language versions (shown only in relevant directories)
+[golang]
+format = "[$symbol($version)]($style) "
+
+[nodejs]
+format = "[$symbol($version)]($style) "
+
+[python]
+disabled = true
+format = "[$symbol($version)]($style) "
+
+[rust]
+format = "[$symbol($version)]($style) "
+
+# Docker
+[docker_context]
+# symbol = " "  # using default
+format = "[$symbol$context]($style) "

@@ -28,7 +28,6 @@
     fzf
     tree
     htop
-    starship  # Shell prompt
     gnumake   # GNU Make build tool
 
     # Language toolchains
@@ -151,4 +150,13 @@
       };
     };
   };
+
+  programs.starship = {
+    enable = true;
+    # Use config file from dotfiles
+    enableZshIntegration = true;
+  };
+
+  # Starship configuration file
+  home.file.".config/starship.toml".source = ../../dotfiles/starship.toml;
 }
