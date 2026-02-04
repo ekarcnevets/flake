@@ -2,6 +2,7 @@
   imports = [
     ./dev.nix
     ./ssh.nix
+    ./ghostty.nix
   ];
 
   home.username = "steven";
