@@ -9,10 +9,12 @@
     git
     gh   # GitHub CLI
     tig  # Text-mode interface for git
+    diff-so-fancy  # Better git diffs
 
     # JSON/YAML tools
     jq
     yq-go
+    dyff  # YAML diff tool
 
     # Modern CLI replacements
     ripgrep  # better grep
@@ -22,15 +24,19 @@
 
     # Development tools
     claude-code
+    codex
     fzf
     tree
     htop
+    starship  # Shell prompt
+    gnumake   # GNU Make build tool
 
-    # Add language-specific tools as needed:
-    # nodejs
-    # python3
-    # rustc
-    # go
+    # Language toolchains
+    rustup  # Rust toolchain manager
+    go      # Go language
+    fnm     # Fast Node Manager (nvm alternative, works with .nvmrc)
+    python3  # Python interpreter
+    uv       # Fast Python package installer
   ];
 
   programs.git = {
