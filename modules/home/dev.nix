@@ -35,6 +35,7 @@
     rustup  # Rust toolchain manager
     go      # Go language
     fnm     # Fast Node Manager (nvm alternative, works with .nvmrc)
+    pnpm    # Fast Node package manager
     python3  # Python interpreter
     uv       # Fast Python package installer
 
