@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ./dev.nix
+    ./ssh.nix
   ];
 
   home.username = "steven";
