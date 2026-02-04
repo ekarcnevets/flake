@@ -33,4 +33,4 @@ check:
 
 # Format nix files
 fmt:
-	nix fmt
+	fd -e nix -X nix fmt --

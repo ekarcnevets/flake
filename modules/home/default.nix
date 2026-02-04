@@ -22,7 +22,7 @@
         "fzf"
         "kubectl"
       ];
-      theme = "";  # Using Starship prompt
+      theme = ""; # Using Starship prompt
       custom = "$HOME/.oh-my-zsh/custom";
     };
 
