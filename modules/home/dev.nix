@@ -1,4 +1,7 @@
 { pkgs, ... }: {
+  # Tig configuration
+  home.file.".tigrc".source = ../../dotfiles/tigrc;
+
   home.packages = with pkgs; [
     # Core utilities
     coreutils

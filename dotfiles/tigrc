@@ -1,0 +1,2 @@
+# Copy commit hash to clipboard
+bind generic I @sh -c "printf %(commit) | pbcopy"
