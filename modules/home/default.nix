@@ -3,11 +3,17 @@
     ./dev.nix
     ./ssh.nix
     ./ghostty.nix
+    ./zed.nix
   ];
 
   home.username = "steven";
   home.homeDirectory = "/Users/steven";
   home.stateVersion = "25.11";
+
+  # Fonts
+  home.packages = with pkgs; [
+    nerd-fonts.blex-mono
+  ];
 
   # Work-specific git config
   home.file."src/github.com/nscaledev/.gitconfig".source = ../../dotfiles/git/nscaledev.gitconfig;

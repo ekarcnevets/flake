@@ -11,6 +11,7 @@
       "notion-calendar"
       "slack"
       "spotify"
+      "zed"
     ];
 
     onActivation = {
