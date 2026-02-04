@@ -1,34 +1,9 @@
 { ... }: {
   # SSH allowed signers for signature verification
-  home.file.".ssh/allowed_signers".text = ''
-    ekarcnevets@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJOkkyB57orOxVPLOZ8YhMDTmvqj5b2fi0Cy5DRlwuEZ
-    steven.crake@nscale.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILoxhIV4lNUvgM/1ORLBrc+tmr7esOJqRGZWUShgRMfj
-  '';
+  home.file.".ssh/allowed_signers".source = ./dotfiles/ssh/allowed_signers;
 
   # SSH configuration for 1Password
-  home.file.".ssh/config".text = ''
-    Include /Users/steven/.config/colima/ssh_config
-    Include /Users/steven/.colima/ssh_config
-
-    # Default host – personal GitHub
-    Host github.com
-      User git
-      IdentityAgent ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
-      IdentityFile ~/.ssh/github_ekarcnevets_moon_1pw.pub
-      IdentitiesOnly yes
-
-    # Nscale GitHub – use different key
-    Host github.com-nscale
-      HostName github.com
-      User git
-      IdentityAgent ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
-      IdentityFile ~/.ssh/github_nscale_moon_1pw.pub
-      IdentitiesOnly yes
-
-    # Fallback
-    Host *
-      IdentityAgent ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
-  '';
+  home.file.".ssh/config".source = ./dotfiles/ssh/config;
 
   # 1Password SSH agent configuration
   home.file.".config/1Password/ssh/agent.toml".text = ''
