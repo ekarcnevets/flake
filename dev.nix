@@ -37,6 +37,13 @@
     fnm     # Fast Node Manager (nvm alternative, works with .nvmrc)
     python3  # Python interpreter
     uv       # Fast Python package installer
+
+    # Kubernetes tools
+    kubectl           # Kubernetes CLI
+    kubernetes-helm   # Helm package manager
+    helm-docs         # Generate docs from Helm charts
+    k9s               # Terminal UI for Kubernetes
+    kubie             # Kubernetes context/namespace switcher
   ];
 
   programs.git = {
