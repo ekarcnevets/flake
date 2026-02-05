@@ -75,6 +75,10 @@
     };
 
     sessionVariables = {
+      # Editor
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+
       # XDG Base Directory
       XDG_CONFIG_HOME = "$HOME/.config";
 
