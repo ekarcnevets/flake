@@ -4,6 +4,7 @@
     ./ssh.nix
     ./ghostty.nix
     ./zed.nix
+    ./aerospace.nix
   ];
 
   home.username = "steven";
