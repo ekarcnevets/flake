@@ -57,6 +57,15 @@
         "UAProfileCheckingStatus" = 0;
         "siriEnabled" = 0;
       };
+      # Disable screenshot keyboard shortcuts
+      "com.apple.symbolichotkeys" = {
+        AppleSymbolicHotKeys = {
+          "28" = { enabled = false; }; # Save picture of screen as a file (⇧⌘3)
+          "29" = { enabled = false; }; # Copy picture of screen to clipboard (⌃⇧⌘3)
+          "30" = { enabled = false; }; # Save picture of selected area as a file (⇧⌘4)
+          "31" = { enabled = false; }; # Copy picture of selected area to clipboard (⌃⇧⌘4)
+        };
+      };
     };
   };
 
