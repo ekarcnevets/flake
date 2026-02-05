@@ -31,7 +31,6 @@
     fzf
     tree
     htop
-    neovim # Text editor
     biome # Fast formatter for JS/TS/JSON/CSS
     gnumake # GNU Make build tool
 

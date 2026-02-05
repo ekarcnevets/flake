@@ -5,6 +5,7 @@
     ./ghostty.nix
     ./zed.nix
     ./aerospace.nix
+    ./nvim.nix
   ];
 
   home.username = "steven";
