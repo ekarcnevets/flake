@@ -14,6 +14,7 @@
   # Fonts
   home.packages = with pkgs; [
     nerd-fonts.blex-mono
+    nerd-fonts.go-mono
   ];
 
   # Work-specific git config
