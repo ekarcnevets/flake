@@ -14,6 +14,7 @@
       "linear-linear"
       "notion"
       "notion-calendar"
+      "shottr"
       "slack"
       "spotify"
       "zed"
