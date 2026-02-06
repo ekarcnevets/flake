@@ -6,7 +6,7 @@
     enableZshIntegration = false; # Using evalcache for faster init
 
     settings = {
-      add_newline = false;
+      add_newline = true;
       format = "$hostname$directory$git_branch$git_commit$git_state$git_metrics$git_status$kubernetes$direnv$docker_context$package$golang$nodejs$python$rust$terraform$nix_shell$env_var$cmd_duration$fill$time$line_break$jobs$status$character";
 
       hostname = {
