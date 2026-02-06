@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   imports = [
     ../configs/dev.nix
     ../configs/ssh.nix
@@ -6,6 +6,7 @@
     ../configs/zed.nix
     ../configs/aerospace.nix
     ../configs/nvim.nix
+    ../configs/starship.nix
   ];
 
   home.username = "steven";
@@ -24,6 +25,20 @@
 
   programs.zsh = {
     enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+
+    history = {
+      size = 10000000;
+      save = 10000000;
+      expireDuplicatesFirst = true;
+      ignoreDups = true;
+      ignoreAllDups = true;
+      extended = true;
+      share = true;
+    };
+
     oh-my-zsh = {
       enable = true;
       plugins = [
@@ -48,6 +63,19 @@
       {
         name = "you-should-use";
         src = "${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use";
+      }
+      {
+        name = "zsh-z";
+        src = "${pkgs.zsh-z}/share/zsh-z";
+      }
+      {
+        name = "evalcache";
+        src = pkgs.fetchFromGitHub {
+          owner = "mroth";
+          repo = "evalcache";
+          rev = "master";
+          sha256 = "sha256-CN9dnSt9kc5AEkWnbtjyv+DCQZ08Ifmac5wELqve17U=";
+        };
       }
     ];
 
@@ -97,21 +125,41 @@
       TESTCONTAINERS_RYUK_DISABLED = "true";
     };
 
-    initContent = ''
-      # Homebrew
-      eval "$(/opt/homebrew/bin/brew shellenv)"
+    initContent = lib.mkMerge [
+      (lib.mkBefore ''
+        # Homebrew
+        eval "$(/opt/homebrew/bin/brew shellenv)"
 
-      # zsh-vi-mode: Initialize when sourced
-      ZVM_INIT_MODE=sourcing
+        # zsh-vi-mode: Initialize when sourced
+        ZVM_INIT_MODE=sourcing
 
-      # you-should-use: Show all alias suggestions
-      YSU_MODE=ALL
+        # you-should-use: Show all alias suggestions
+        YSU_MODE=ALL
+      '')
 
-      # Completions
-      if [[ ":$FPATH:" != *":/Users/steven/.zsh/completions:"* ]]; then
-        export FPATH="/Users/steven/.zsh/completions:$FPATH"
-      fi
+      (lib.mkOrder 550 ''
+        # Completions
+        if [[ ":$FPATH:" != *":/Users/steven/.zsh/completions:"* ]]; then
+          export FPATH="/Users/steven/.zsh/completions:$FPATH"
+        fi
 
+        # Only rebuild completions once per 24 hours for performance
+        autoload -Uz +X compaudit compinit
+        autoload -Uz +X bashcompinit
+        setopt EXTENDEDGLOB
+        for dump in $HOME/.zcompdump(N.mh+24); do
+          compinit
+          bashcompinit
+          if [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
+            zcompile "$dump"
+          fi
+        done
+        unsetopt EXTENDEDGLOB
+        compinit -C
+        bashcompinit
+      '')
+
+      ''
       # fnm (Fast Node Manager) - replaces nvm
       eval "$(fnm env --use-on-cd)"
 
@@ -147,6 +195,17 @@
             --preview-window '~4,+{2}+4/3,<80(up)' \
             --query "$*"
       )
-    '';
+
+      # Use evalcache for slow initialization commands (speeds up shell startup)
+      _evalcache direnv hook zsh
+      _evalcache starship init zsh
+      ''
+    ];
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = false; # Using evalcache for faster init
+    nix-direnv.enable = true;
   };
 }

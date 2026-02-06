@@ -113,7 +113,10 @@
 
       difftool."zed".cmd = "zed --wait --diff \"$LOCAL\" \"$REMOTE\"";
 
-      merge.tool = "zed";
+      merge = {
+        tool = "zed";
+        conflictstyle = "zdiff3";
+      };
 
       mergetool."zed" = {
         cmd = "zed --wait --merge \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"";
@@ -158,15 +161,10 @@
         markEmptyLines = false;
         stripLeadingSymbols = false;
       };
+
+      "url \"ssh://git@github.com/\"" = {
+        insteadOf = [ "https://github.com/" "git://github.com/" ];
+      };
     };
   };
-
-  programs.starship = {
-    enable = true;
-    # Use config file from dotfiles
-    enableZshIntegration = true;
-  };
-
-  # Starship configuration file
-  home.file.".config/starship.toml".source = ../files/starship.toml;
 }

@@ -28,7 +28,7 @@
     # Development tools
     fzf
     tree
-    htop
+    btop # Better system monitor than htop
     biome # Fast formatter for JS/TS/JSON/CSS
     gnumake # GNU Make build tool
 
@@ -55,5 +55,6 @@
     zsh-vi-mode
     zsh-fzf-tab
     zsh-you-should-use
+    zsh-z # Directory jumping
   ];
 }
