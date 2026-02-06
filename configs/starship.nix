@@ -88,11 +88,13 @@
       nodejs = {
         disabled = false;
         style = "fg:dark_grey";
+        format = "via [ ($version )]($style)";
       };
 
       rust = {
         disabled = false;
         style = "fg:dark_grey";
+        format = "via [🦀 ($version )]($style)";
       };
 
       docker_context = {
