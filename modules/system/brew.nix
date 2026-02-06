@@ -20,6 +20,10 @@
       "zed"
     ];
 
+    masApps = {
+      "Amphetamine" = 937984704;
+    };
+
     onActivation = {
       autoUpdate = true;
       cleanup = "zap";
