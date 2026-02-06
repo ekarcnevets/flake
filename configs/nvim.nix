@@ -6,7 +6,7 @@
 
   # Symlink NvChad configuration
   xdg.configFile."nvim" = {
-    source = ../../dotfiles/nvim;
+    source = ../files/nvim;
     recursive = true;
   };
 
@@ -16,7 +16,7 @@
     LOCK_FILE="$HOME/.config/nvim/lazy-lock.json"
     if [ -L "$LOCK_FILE" ]; then
       $DRY_RUN_CMD rm "$LOCK_FILE"
-      $DRY_RUN_CMD cp ${../../dotfiles/nvim/lazy-lock.json} "$LOCK_FILE"
+      $DRY_RUN_CMD cp ${../files/nvim/lazy-lock.json} "$LOCK_FILE"
       $DRY_RUN_CMD chmod u+w "$LOCK_FILE"
     fi
   '';

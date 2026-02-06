@@ -11,24 +11,43 @@
     codex-cli-nix.url = "github:sadjow/codex-cli-nix";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, claude-code-nix, codex-cli-nix }: {
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, claude-code-nix, codex-cli-nix }:
+  let
+    darwinSystem = "aarch64-darwin";
+
+    mkDarwinSystem = { hostname, enableHomeManager ? true }:
+      nix-darwin.lib.darwinSystem {
+        system = darwinSystem;
+        specialArgs = {
+          inherit inputs;
+          pkgs-unstable = import nixpkgs {
+            system = darwinSystem;
+            config.allowUnfree = true;
+          };
+        };
+        modules = [
+          ./hosts/${hostname}
+          ./modules/darwin.nix
+          {
+            nixpkgs.overlays = [
+              claude-code-nix.overlays.default
+              codex-cli-nix.overlays.default
+            ];
+          }
+        ] ++ nixpkgs.lib.optionals enableHomeManager [
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.steven = import ./home/darwin.nix;
+          }
+        ];
+      };
+  in
+  {
     # Formatter for 'nix fmt'
     formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixpkgs-fmt;
 
-    darwinConfigurations."wagestation" = nix-darwin.lib.darwinSystem {
-      modules = [
-        ./modules/system
-        home-manager.darwinModules.home-manager
-        {
-          nixpkgs.overlays = [
-            claude-code-nix.overlays.default
-            codex-cli-nix.overlays.default
-          ];
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.steven = import ./modules/home;
-        }
-      ];
-    };
+    darwinConfigurations.wagestation = mkDarwinSystem { hostname = "wagestation"; };
   };
 }

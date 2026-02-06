@@ -1,8 +1,4 @@
 { pkgs, ... }: {
-  imports = [
-    ./brew.nix
-  ];
-
   # Let Determinate Nix handle Nix configuration
   nix.enable = false;
 
@@ -73,6 +69,38 @@
   system.keyboard = {
     enableKeyMapping = true;
     remapCapsLockToControl = true;
+  };
+
+  # Homebrew configuration
+  homebrew = {
+    enable = true;
+
+    taps = [
+      "nikitabobko/tap"
+    ];
+
+    casks = [
+      "1password"
+      "aerospace"
+      "arc"
+      "ghostty"
+      "linear-linear"
+      "notion"
+      "notion-calendar"
+      "shottr"
+      "slack"
+      "spotify"
+      "zed"
+    ];
+
+    masApps = {
+      "Amphetamine" = 937984704;
+    };
+
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "zap";
+    };
   };
 
   system.stateVersion = 5;

@@ -1,11 +1,11 @@
 { pkgs, ... }: {
   imports = [
-    ./dev.nix
-    ./ssh.nix
-    ./ghostty.nix
-    ./zed.nix
-    ./aerospace.nix
-    ./nvim.nix
+    ../configs/dev.nix
+    ../configs/ssh.nix
+    ../configs/ghostty.nix
+    ../configs/zed.nix
+    ../configs/aerospace.nix
+    ../configs/nvim.nix
   ];
 
   home.username = "steven";
@@ -19,8 +19,8 @@
   ];
 
   # Work-specific git config
-  home.file."src/github.com/nscaledev/.gitconfig".source = ../../dotfiles/git/nscaledev.gitconfig;
-  home.file."src/github.com/stevencrake-nscale/.gitconfig".source = ../../dotfiles/git/stevencrake-nscale.gitconfig;
+  home.file."src/github.com/nscaledev/.gitconfig".source = ../files/git/nscaledev.gitconfig;
+  home.file."src/github.com/stevencrake-nscale/.gitconfig".source = ../files/git/stevencrake-nscale.gitconfig;
 
   programs.zsh = {
     enable = true;

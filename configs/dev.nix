@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   # Tig configuration
-  home.file.".tigrc".source = ../../dotfiles/tigrc;
+  home.file.".tigrc".source = ../files/tigrc;
 
   home.packages = with pkgs; [
     # Core utilities
@@ -168,5 +168,5 @@
   };
 
   # Starship configuration file
-  home.file.".config/starship.toml".source = ../../dotfiles/starship.toml;
+  home.file.".config/starship.toml".source = ../files/starship.toml;
 }
