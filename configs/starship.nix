@@ -65,7 +65,7 @@
 
       kubernetes = {
         style = "";
-        format = "[󱃾 ($context in) ($namespace)]($style) ";
+        format = "[󱃾 $context( in $namespace)]($style) ";
         disabled = false;
       };
 
