@@ -163,11 +163,6 @@
       # fnm (Fast Node Manager) - replaces nvm
       eval "$(fnm env --use-on-cd)"
 
-      # Initialize rustup with nightly if not configured
-      if ! rustup show &>/dev/null; then
-        rustup default nightly
-      fi
-
       # Colima/Testcontainers dynamic host
       export TESTCONTAINERS_HOST_OVERRIDE=$(colima ls -j 2>/dev/null | jq -r '.address' 2>/dev/null || echo "")
 
