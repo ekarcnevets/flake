@@ -292,6 +292,7 @@ vim.keymap.set('n', '<C-s>', function() Snacks.picker.grep() end, {})
 vim.keymap.set('n', '<C-p>', function() Snacks.picker.git_files() end, {})
 vim.keymap.set('n', '<C-g>', function() Snacks.picker.lsp_symbols() end, {})
 
+vim.keymap.set('n', '<Leader>e', function() Snacks.explorer() end, { desc = "Toggle file explorer" })
 vim.keymap.set('n', '<Leader><space>', ':nohlsearch<CR>')
 vim.keymap.set('n', '<Leader>tn', ':tabnext<CR>')
 vim.keymap.set('n', '<Leader>tp', ':tabprevious<CR>')
