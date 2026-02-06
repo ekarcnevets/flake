@@ -272,8 +272,11 @@ lspsaga.setup {
 }
 
 require("catppuccin").setup({
-  flavour = "macchiato", -- latte, frappe, macchiato, mocha
-  transparent_background = true
+  flavour = "mocha", -- latte, frappe, macchiato, mocha
+  transparent_background = false,
+  integrations = {
+    snacks = true,
+  }
 })
 
 require("nvim-surround").setup({})
@@ -306,11 +309,6 @@ vim.keymap.set('n', '<Leader>tp', ':tabprevious<CR>')
 vim.keymap.set('n', '<Leader>bd', function() Snacks.bufdelete() end, { desc = "Delete buffer" })
 vim.keymap.set('n', '<Leader>bo', function() Snacks.bufdelete.other() end, { desc = "Delete other buffers" })
 vim.cmd([[
-    augroup custom_appearance
-      autocmd!
-      au ColorScheme * hi Normal gui=NONE guifg=NONE guibg=NONE ctermfg=none ctermbg=NONE
-      " au ColorScheme * hi Statusline guifg=NONE guibg=#000000 gui=bold
-    augroup END
     function! s:statusline_expr()
         let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : '''}"
         let ro  = "%{&readonly ? '[RO] ' : '''}"
@@ -323,8 +321,34 @@ vim.cmd([[
         return ' [%n] %.40F %<'.mod.ro.ft.fug.sep.pos.'%*'.pct
       endfunction
       let &statusline = s:statusline_expr()
-      colorscheme github_light
 ]])
+
+-- Auto-switch theme based on macOS appearance (Tahoe 26 with Auto mode support)
+local function set_theme_from_system()
+  -- Use AppleScript which works even when Auto mode is enabled
+  local result = vim.fn.system("osascript -e 'tell application \"System Events\" to tell appearance preferences to get dark mode'")
+
+  if result:match("true") then
+    vim.o.background = 'dark'
+    vim.cmd('hi clear')
+    vim.cmd('colorscheme catppuccin-mocha')
+  else
+    vim.o.background = 'light'
+    vim.cmd('hi clear')
+    vim.cmd('colorscheme github_light')
+  end
+end
+
+-- Set theme on startup
+vim.defer_fn(set_theme_from_system, 10)
+
+-- Auto-update when focus returns to Neovim
+vim.api.nvim_create_autocmd("FocusGained", {
+  callback = set_theme_from_system,
+})
+
+-- Manual refresh command
+vim.api.nvim_create_user_command('RefreshTheme', set_theme_from_system, {})
 vim.opt.number = true
 vim.opt.showmatch = true
 vim.opt.splitright = true
