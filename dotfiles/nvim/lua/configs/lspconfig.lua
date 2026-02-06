@@ -1,33 +1,31 @@
 -- load defaults i.e lua_lsp
 require("nvchad.configs.lspconfig").defaults()
 
-local lspconfig = require "lspconfig"
-
 local servers = { "html", "cssls", "ts_ls", "rust_analyzer", "tailwindcss" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
+  vim.lsp.enable(lsp, {
     on_attach = nvlsp.on_attach,
     on_init = nvlsp.on_init,
     capabilities = nvlsp.capabilities,
-  }
+  })
 end
 
 -- configuring single server, example: typescript
--- lspconfig.ts_ls.setup {
+-- vim.lsp.enable('ts_ls', {
 --   on_attach = nvlsp.on_attach,
 --   on_init = nvlsp.on_init,
 --   capabilities = nvlsp.capabilities,
--- }
+-- })
 
 -- Special configuration for gopls
-lspconfig["gopls"].setup {
+vim.lsp.enable("gopls", {
   on_attach = function(client, bufnr)
     -- Call the default on_attach
     nvlsp.on_attach(client, bufnr)
-    
+
     -- Add Go-specific autoformatting on save
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
@@ -48,4 +46,4 @@ lspconfig["gopls"].setup {
     })
   end,
   capabilities = nvlsp.capabilities,
-}
+})
