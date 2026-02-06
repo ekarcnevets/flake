@@ -46,6 +46,7 @@
     helm-docs # Generate docs from Helm charts
     k9s # Terminal UI for Kubernetes
     kubie # Kubernetes context/namespace switcher
+    teleport # Teleport shell (tsh) for secure access
   ];
 
   # Home-manager specific packages
