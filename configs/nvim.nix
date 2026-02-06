@@ -295,6 +295,8 @@ vim.keymap.set('n', '<C-g>', function() Snacks.picker.lsp_symbols() end, {})
 vim.keymap.set('n', '<Leader><space>', ':nohlsearch<CR>')
 vim.keymap.set('n', '<Leader>tn', ':tabnext<CR>')
 vim.keymap.set('n', '<Leader>tp', ':tabprevious<CR>')
+vim.keymap.set('n', '<Leader>bd', function() Snacks.bufdelete() end, { desc = "Delete buffer" })
+vim.keymap.set('n', '<Leader>bo', function() Snacks.bufdelete.other() end, { desc = "Delete other buffers" })
 vim.cmd([[
     augroup custom_appearance
       autocmd!
