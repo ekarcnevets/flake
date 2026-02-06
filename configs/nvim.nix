@@ -292,6 +292,13 @@ vim.keymap.set('n', '<C-s>', function() Snacks.picker.grep() end, {})
 vim.keymap.set('n', '<C-p>', function() Snacks.picker.git_files() end, {})
 vim.keymap.set('n', '<C-g>', function() Snacks.picker.lsp_symbols() end, {})
 
+-- Diagnostics
+vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = "Show diagnostic" })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+vim.keymap.set('n', '[e', function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end, { desc = "Previous error" })
+vim.keymap.set('n', ']e', function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end, { desc = "Next error" })
+
 vim.keymap.set('n', '<Leader>e', function() Snacks.explorer() end, { desc = "Toggle file explorer" })
 vim.keymap.set('n', '<Leader><space>', ':nohlsearch<CR>')
 vim.keymap.set('n', '<Leader>tn', ':tabnext<CR>')
