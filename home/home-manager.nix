@@ -161,9 +161,6 @@
       '')
 
       ''
-      # fnm (Fast Node Manager) - replaces nvm
-      eval "$(fnm env --use-on-cd)"
-
       # Colima/Testcontainers dynamic host
       export TESTCONTAINERS_HOST_OVERRIDE=$(colima ls -j 2>/dev/null | jq -r '.address' 2>/dev/null || echo "")
 
