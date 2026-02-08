@@ -56,13 +56,23 @@
   programs.git = {
     enable = true;
 
+    includes = [
+      {
+        condition = "gitdir:/Users/steven/src/github.com/nscaledev/";
+        path = "/Users/steven/src/github.com/nscaledev/.gitconfig";
+      }
+      {
+        condition = "gitdir:/Users/steven/src/github.com/stevencrake-nscale/";
+        path = "/Users/steven/src/github.com/stevencrake-nscale/.gitconfig";
+      }
+    ];
+
     settings = {
       user = {
         name = "Steven Crake";
         email = "ekarcnevets@gmail.com";
         signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJOkkyB57orOxVPLOZ8YhMDTmvqj5b2fi0Cy5DRlwuEZ";
       };
-
       alias = {
         addm = "!git ls-files --deleted --modified --other --exclude-standard | fzf -0 -m --preview 'git diff --color=always {-1}' | xargs -r git add";
         addmp = "!git ls-files --deleted --modified --exclude-standard | fzf -0 -m --preview 'git diff --color=always {-1}' | xargs -r -o git add -p";
@@ -94,8 +104,6 @@
         gpgsign = true;
       };
 
-      includeIf."gitdir:/Users/steven/src/github.com/nscaledev/".path = "/Users/steven/src/github.com/nscaledev/.gitconfig";
-      includeIf."gitdir:/Users/steven/src/github.com/stevencrake-nscale/".path = "/Users/steven/src/github.com/stevencrake-nscale/.gitconfig";
 
       column.ui = "auto";
       branch.sort = "-committerdate";
