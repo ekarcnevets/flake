@@ -13,20 +13,13 @@
     let
       darwinSystem = "aarch64-darwin";
 
-      mkDarwinSystem = { hostname, enableHomeManager ? true, extraHomeModules ? [] }:
+      mkDarwinSystem = { hostname, extraHomeModules ? [] }:
         nix-darwin.lib.darwinSystem {
           system = darwinSystem;
-          specialArgs = {
-            inherit inputs;
-            pkgs-unstable = import nixpkgs {
-              system = darwinSystem;
-              config.allowUnfree = true;
-            };
-          };
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/${hostname}
             ./modules/darwin.nix
-          ] ++ nixpkgs.lib.optionals enableHomeManager [
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;

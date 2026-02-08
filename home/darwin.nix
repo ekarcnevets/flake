@@ -1,12 +1,9 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 
-let
-  commonPackages = import ../modules/common.nix { inherit config pkgs pkgs-unstable; };
-in
 {
   imports = [
     ./home-manager.nix
   ];
 
-  home.packages = commonPackages.shared ++ commonPackages.home;
+  home.packages = import ../modules/common.nix { inherit pkgs; };
 }

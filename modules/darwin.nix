@@ -1,9 +1,12 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   # Let Determinate Nix handle Nix configuration
   nix.enable = false;
 
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
+
+  # Track flake revision
+  system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
 
   # Define the user
   users.users.steven = {

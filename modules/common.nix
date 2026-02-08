@@ -1,63 +1,58 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 
-{
-  # Packages available to all hosts
-  shared = with pkgs; [
-    # Core utilities
-    coreutils
-    curl
-    wget
+with pkgs; [
+  # Core utilities
+  coreutils
+  curl
+  wget
 
-    # Version control
-    git
-    gh # GitHub CLI
-    tig # Text-mode interface for git
-    diff-so-fancy # Better git diffs
+  # Version control
+  git
+  gh # GitHub CLI
+  tig # Text-mode interface for git
+  diff-so-fancy # Better git diffs
 
-    # JSON/YAML tools
-    jq
-    yq-go
-    dyff # YAML diff tool
+  # JSON/YAML tools
+  jq
+  yq-go
+  dyff # YAML diff tool
 
-    # Modern CLI replacements
-    ripgrep # better grep
-    fd # better find
-    bat # better cat
-    eza # better ls
+  # Modern CLI replacements
+  ripgrep # better grep
+  fd # better find
+  bat # better cat
+  eza # better ls
 
-    # Development tools
-    fzf
-    tree
-    btop # Better system monitor than htop
-    biome # Fast formatter for JS/TS/JSON/CSS
-    gnumake # GNU Make build tool
+  # Development tools
+  fzf
+  tree
+  btop # Better system monitor than htop
+  biome # Fast formatter for JS/TS/JSON/CSS
+  gnumake # GNU Make build tool
 
-    # System Python (for system scripts and tools)
-    python3
+  # System Python (for system scripts and tools)
+  python3
 
-    # Container tools
-    colima # Container runtime for macOS
-    docker # Docker CLI
-    docker-compose # Docker Compose CLI
+  # Container tools
+  colima # Container runtime for macOS
+  docker # Docker CLI
+  docker-compose # Docker Compose CLI
 
-    # Kubernetes tools
-    kubectl # Kubernetes CLI
-    kubernetes-helm # Helm package manager
-    helm-docs # Generate docs from Helm charts
-    k9s # Terminal UI for Kubernetes
-    kubie # Kubernetes context/namespace switcher
-    teleport # Teleport shell (tsh) for secure access
+  # Kubernetes tools
+  kubectl # Kubernetes CLI
+  kubernetes-helm # Helm package manager
+  helm-docs # Generate docs from Helm charts
+  k9s # Terminal UI for Kubernetes
+  kubie # Kubernetes context/namespace switcher
+  teleport # Teleport shell (tsh) for secure access
 
-    # AWS tools
-    awscli2 # AWS CLI
-    aws-sam-cli # AWS SAM CLI
-  ];
+  # AWS tools
+  awscli2 # AWS CLI
+  aws-sam-cli # AWS SAM CLI
 
-  # Home-manager specific packages
-  home = with pkgs; [
-    zsh-vi-mode
-    zsh-fzf-tab
-    zsh-you-should-use
-    zsh-z # Directory jumping
-  ];
-}
+  # Zsh plugins
+  zsh-vi-mode
+  zsh-fzf-tab
+  zsh-you-should-use
+  zsh-z # Directory jumping
+]

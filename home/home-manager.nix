@@ -1,7 +1,6 @@
 { pkgs, lib, ... }: {
   imports = [
     ../configs/git.nix
-    ../configs/ssh.nix
     ../configs/ghostty.nix
     ../configs/zed.nix
     ../configs/aerospace.nix
@@ -12,6 +11,9 @@
   home.username = "steven";
   home.homeDirectory = "/Users/steven";
   home.stateVersion = "25.11";
+
+  # 1Password SSH agent configuration
+  home.file.".config/1Password/ssh/agent.toml".source = ../files/1password/agent.toml;
 
   # Fonts
   home.packages = with pkgs; [
