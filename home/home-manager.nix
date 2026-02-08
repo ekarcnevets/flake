@@ -1,6 +1,6 @@
 { pkgs, lib, ... }: {
   imports = [
-    ../configs/dev.nix
+    ../configs/git.nix
     ../configs/ssh.nix
     ../configs/ghostty.nix
     ../configs/zed.nix
@@ -110,12 +110,6 @@
 
       # XDG Base Directory
       XDG_CONFIG_HOME = "$HOME/.config";
-
-      # Python
-      PIP_REQUIRE_VIRTUALENV = "true";
-
-      # Go
-      GOPATH = "$HOME/go";
 
       # Kubernetes
       KUBECTL_EXTERNAL_DIFF = "dyff between --omit-header --set-exit-code";

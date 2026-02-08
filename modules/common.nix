@@ -32,13 +32,13 @@
     biome # Fast formatter for JS/TS/JSON/CSS
     gnumake # GNU Make build tool
 
-    # Language toolchains
-    rustup # Rust toolchain manager
-    go # Go language
-    fnm # Fast Node Manager (nvm alternative, works with .nvmrc)
-    pnpm # Fast Node package manager
-    python3 # Python interpreter
-    uv # Fast Python package installer
+    # System Python (for system scripts and tools)
+    python3
+
+    # Container tools
+    colima # Container runtime for macOS
+    docker # Docker CLI
+    docker-compose # Docker Compose CLI
 
     # Kubernetes tools
     kubectl # Kubernetes CLI
