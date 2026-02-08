@@ -26,8 +26,6 @@
     eza # better ls
 
     # Development tools
-    claude-code
-    codex
     fzf
     tree
     htop

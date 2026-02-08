@@ -83,6 +83,8 @@
       "1password"
       "aerospace"
       "arc"
+      "claude-code"
+      "codex"
       "ghostty"
       "linear-linear"
       "notion"

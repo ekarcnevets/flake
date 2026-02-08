@@ -51,8 +51,6 @@
 
   # Home-manager specific packages
   home = with pkgs; [
-    claude-code
-    codex
     zsh-vi-mode
     zsh-fzf-tab
     zsh-you-should-use
