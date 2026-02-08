@@ -88,7 +88,7 @@
       nodejs = {
         disabled = false;
         style = "fg:dark_grey";
-        format = "via [ ($version )]($style)";
+        format = "via [⬢ ($version )]($style)";
       };
 
       rust = {
