@@ -161,37 +161,37 @@
       '')
 
       ''
-      # Colima/Testcontainers dynamic host
-      export TESTCONTAINERS_HOST_OVERRIDE=$(colima ls -j 2>/dev/null | jq -r '.address' 2>/dev/null || echo "")
+        # Colima/Testcontainers dynamic host
+        export TESTCONTAINERS_HOST_OVERRIDE=$(colima ls -j 2>/dev/null | jq -r '.address' 2>/dev/null || echo "")
 
-      # SSH keys
-      ssh-add -A >/dev/null 2>&1
+        # SSH keys
+        ssh-add -A >/dev/null 2>&1
 
-      # kubectl completion for k alias
-      [[ $commands[kubectl] ]] && complete -o default -F __start_kubectl k
+        # kubectl completion for k alias
+        [[ $commands[kubectl] ]] && complete -o default -F __start_kubectl k
 
-      # ripgrep->fzf->vim function
-      rfv() (
-        RELOAD='reload:rg --column --color=always --smart-case {q} || :'
-        OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
-                  nvim {1} +{2}
-                else
-                  nvim +cw -q {+f}
-                fi'
-        fzf --disabled --ansi --multi \
-            --bind "start:$RELOAD" --bind "change:$RELOAD" \
-            --bind "enter:become:$OPENER" \
-            --bind "ctrl-o:execute:$OPENER" \
-            --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' \
-            --delimiter : \
-            --preview 'bat --style=full --color=always --highlight-line {2} {1}' \
-            --preview-window '~4,+{2}+4/3,<80(up)' \
-            --query "$*"
-      )
+        # ripgrep->fzf->vim function
+        rfv() (
+          RELOAD='reload:rg --column --color=always --smart-case {q} || :'
+          OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
+                    nvim {1} +{2}
+                  else
+                    nvim +cw -q {+f}
+                  fi'
+          fzf --disabled --ansi --multi \
+              --bind "start:$RELOAD" --bind "change:$RELOAD" \
+              --bind "enter:become:$OPENER" \
+              --bind "ctrl-o:execute:$OPENER" \
+              --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' \
+              --delimiter : \
+              --preview 'bat --style=full --color=always --highlight-line {2} {1}' \
+              --preview-window '~4,+{2}+4/3,<80(up)' \
+              --query "$*"
+        )
 
-      # Use evalcache for slow initialization commands (speeds up shell startup)
-      _evalcache direnv hook zsh
-      _evalcache starship init zsh
+        # Use evalcache for slow initialization commands (speeds up shell startup)
+        _evalcache direnv hook zsh
+        _evalcache starship init zsh
       ''
     ];
   };

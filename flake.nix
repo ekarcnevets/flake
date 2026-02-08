@@ -10,36 +10,36 @@
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
-  let
-    darwinSystem = "aarch64-darwin";
+    let
+      darwinSystem = "aarch64-darwin";
 
-    mkDarwinSystem = { hostname, enableHomeManager ? true }:
-      nix-darwin.lib.darwinSystem {
-        system = darwinSystem;
-        specialArgs = {
-          inherit inputs;
-          pkgs-unstable = import nixpkgs {
-            system = darwinSystem;
-            config.allowUnfree = true;
+      mkDarwinSystem = { hostname, enableHomeManager ? true }:
+        nix-darwin.lib.darwinSystem {
+          system = darwinSystem;
+          specialArgs = {
+            inherit inputs;
+            pkgs-unstable = import nixpkgs {
+              system = darwinSystem;
+              config.allowUnfree = true;
+            };
           };
+          modules = [
+            ./hosts/${hostname}
+            ./modules/darwin.nix
+          ] ++ nixpkgs.lib.optionals enableHomeManager [
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.steven = import ./home/darwin.nix;
+            }
+          ];
         };
-        modules = [
-          ./hosts/${hostname}
-          ./modules/darwin.nix
-        ] ++ nixpkgs.lib.optionals enableHomeManager [
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.steven = import ./home/darwin.nix;
-          }
-        ];
-      };
-  in
-  {
-    # Formatter for 'nix fmt'
-    formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixpkgs-fmt;
+    in
+    {
+      # Formatter for 'nix fmt'
+      formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixpkgs-fmt;
 
-    darwinConfigurations.wagestation = mkDarwinSystem { hostname = "wagestation"; };
-  };
+      darwinConfigurations.wagestation = mkDarwinSystem { hostname = "wagestation"; };
+    };
 }
