@@ -13,7 +13,7 @@
     let
       darwinSystem = "aarch64-darwin";
 
-      mkDarwinSystem = { hostname, enableHomeManager ? true }:
+      mkDarwinSystem = { hostname, enableHomeManager ? true, extraHomeModules ? [] }:
         nix-darwin.lib.darwinSystem {
           system = darwinSystem;
           specialArgs = {
@@ -31,7 +31,9 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.steven = import ./home/darwin.nix;
+              home-manager.users.steven = {
+                imports = [ ./home/darwin.nix ] ++ extraHomeModules;
+              };
             }
           ];
         };
@@ -40,6 +42,15 @@
       # Formatter for 'nix fmt'
       formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixpkgs-fmt;
 
-      darwinConfigurations.wagestation = mkDarwinSystem { hostname = "wagestation"; };
+      darwinConfigurations = {
+        wagestation = mkDarwinSystem {
+          hostname = "wagestation";
+          extraHomeModules = [ ./hosts/wagestation/home.nix ];
+        };
+        moon = mkDarwinSystem {
+          hostname = "moon";
+          extraHomeModules = [ ./hosts/moon/home.nix ];
+        };
+      };
     };
 }

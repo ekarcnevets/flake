@@ -5,17 +5,6 @@
   programs.git = {
     enable = true;
 
-    includes = [
-      {
-        condition = "gitdir:/Users/steven/src/github.com/nscaledev/";
-        path = "/Users/steven/src/github.com/nscaledev/.gitconfig";
-      }
-      {
-        condition = "gitdir:/Users/steven/src/github.com/stevencrake-nscale/";
-        path = "/Users/steven/src/github.com/stevencrake-nscale/.gitconfig";
-      }
-    ];
-
     settings = {
       user = {
         name = "Steven Crake";

@@ -1,5 +1,8 @@
 .PHONY: init switch build update clean check fmt help
 
+# Auto-detect hostname
+HOSTNAME := $(shell hostname | cut -d. -f1)
+
 # Default target
 help:
 	@echo "Available targets:"
@@ -14,11 +17,11 @@ help:
 
 # Build and activate the configuration
 switch:
-	darwin-rebuild switch --flake .#wagestation
+	darwin-rebuild switch --flake .#$(HOSTNAME)
 
 # Build without activating
 build:
-	darwin-rebuild build --flake .#wagestation
+	darwin-rebuild build --flake .#$(HOSTNAME)
 
 # Update flake inputs
 update:

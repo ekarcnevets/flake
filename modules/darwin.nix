@@ -83,15 +83,18 @@
       "1password"
       "aerospace"
       "arc"
+      "betterdisplay"
       "claude-code"
       "codex"
       "ghostty"
       "linear-linear"
       "notion"
       "notion-calendar"
+      "protonvpn"
       "shottr"
       "slack"
       "spotify"
+      "tuple"
       "zed"
     ];
 

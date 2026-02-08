@@ -47,6 +47,10 @@
     k9s # Terminal UI for Kubernetes
     kubie # Kubernetes context/namespace switcher
     teleport # Teleport shell (tsh) for secure access
+
+    # AWS tools
+    awscli2 # AWS CLI
+    aws-sam-cli # AWS SAM CLI
   ];
 
   # Home-manager specific packages
