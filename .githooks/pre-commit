@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Pre-commit hook: check that staged .nix files are formatted
+
+staged_nix=$(git diff --cached --name-only --diff-filter=ACM -- '*.nix')
+[ -z "$staged_nix" ] && exit 0
+
+# Pass --check to nixpkgs-fmt via nix fmt (no files are modified)
+# shellcheck disable=SC2086
+if ! nix fmt -- --check $staged_nix 2>/dev/null; then
+    echo ""
+    echo "Nix files need formatting. Run 'make fmt' and re-stage."
+    exit 1
+fi

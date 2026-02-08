@@ -1,4 +1,4 @@
-.PHONY: switch build update clean check fmt help
+.PHONY: init switch build update clean check fmt help
 
 # Default target
 help:
@@ -9,6 +9,7 @@ help:
 	@echo "  make clean   - Remove build artifacts"
 	@echo "  make check   - Check flake for errors"
 	@echo "  make fmt     - Format nix files"
+	@echo "  make init    - Set up git hooks"
 	@echo "  make help    - Show this help message"
 
 # Build and activate the configuration
@@ -34,3 +35,7 @@ check:
 # Format nix files
 fmt:
 	fd -e nix -X nix fmt --
+
+# Set up git hooks
+init:
+	git config core.hooksPath .githooks
