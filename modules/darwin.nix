@@ -119,6 +119,7 @@
       "codex"
       "ghostty"
       "linear-linear"
+      "linearmouse"
       "notion"
       "notion-calendar"
       "protonvpn"
