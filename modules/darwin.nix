@@ -28,13 +28,41 @@
 
     # Finder settings
     finder = {
-      AppleShowAllExtensions = true;
       _FXShowPosixPathInTitle = true;
       FXEnableExtensionChangeWarning = false;
     };
 
+    # Trackpad settings
+    trackpad = {
+      Clicking = true; # Tap to click
+      TrackpadRightClick = true; # Two-finger secondary click
+      FirstClickThreshold = 0; # Light click pressure
+      SecondClickThreshold = 0; # Light force click pressure
+      ActuateDetents = true; # Haptic feedback
+      ActuationStrength = 0; # Quiet clicking
+      Dragging = false;
+      DragLock = false;
+      TrackpadThreeFingerDrag = false;
+      TrackpadCornerSecondaryClick = 0; # No corner secondary click
+      TrackpadThreeFingerTapGesture = 0; # Disabled (force click handles look up)
+      TrackpadTwoFingerDoubleTapGesture = true; # Smart zoom
+      TrackpadMomentumScroll = true;
+      TrackpadPinch = true; # Pinch to zoom
+      TrackpadRotate = true; # Two-finger rotate
+      TrackpadFourFingerHorizSwipeGesture = 2; # Swipe between full-screen apps
+      TrackpadFourFingerVertSwipeGesture = 2; # Mission Control / App Exposé
+      TrackpadFourFingerPinchGesture = 2; # Launchpad / Show Desktop
+      TrackpadThreeFingerHorizSwipeGesture = 2; # Swipe between pages
+      TrackpadThreeFingerVertSwipeGesture = 2; # Mission Control
+      TrackpadTwoFingerFromRightEdgeSwipeGesture = 0; # Disabled
+    };
+
     # Keyboard and system settings
     NSGlobalDomain = {
+      # Show all file extensions in Finder
+      AppleShowAllExtensions = true;
+      # Trackpad speed
+      "com.apple.trackpad.scaling" = 1.5;
       # Disable autocorrect
       NSAutomaticSpellingCorrectionEnabled = false;
       # Function keys as standard function keys
