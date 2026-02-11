@@ -15,14 +15,14 @@ Declarative macOS configuration using nix-darwin, home-manager, and flakes.
 
 ## Setup
 
-**First time on a new machine (no sudo required):**
+**First time on a new machine:**
 
 ```bash
 # 1. Test the build first
 nix run nix-darwin -- build --flake .#$(hostname | cut -d. -f1)
 
 # 2. If build succeeds, apply the configuration
-nix run nix-darwin -- switch --flake .#$(hostname | cut -d. -f1)
+sudo nix run nix-darwin -- switch --flake .#$(hostname | cut -d. -f1)
 
 # 3. Set up git hooks
 make init
@@ -34,14 +34,12 @@ exec zsh
 **After initial setup (regular usage):**
 
 ```bash
-make switch   # Apply configuration changes
-make build    # Test without applying
-make update   # Update flake inputs
-make check    # Validate flake
-make fmt      # Format nix files
+sudo make switch   # Apply configuration changes
+make build         # Test without applying
+make update        # Update flake inputs
+make check         # Validate flake
+make fmt           # Format nix files
 ```
-
-**Note:** Never use `sudo` with these commands.
 
 ## Adding Packages
 
