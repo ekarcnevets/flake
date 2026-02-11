@@ -117,6 +117,7 @@
       "betterdisplay"
       "claude-code"
       "codex"
+      "conductor"
       "ghostty"
       "linear-linear"
       "linearmouse"
