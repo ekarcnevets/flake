@@ -71,32 +71,35 @@
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("ui-select")
 
-      -- LSP Configuration
-      local lspconfig = require('lspconfig')
-
+      -- LSP Configuration with new vim.lsp.config API
       -- Common LSP keybindings
-      local on_attach = function(client, bufnr)
-        local bufopts = { noremap=true, silent=true, buffer=bufnr }
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-        vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-        vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-        vim.keymap.set('n', '<space>wl', function()
-          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end, bufopts)
-        vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-        vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-        vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-        vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
-      end
+      vim.api.nvim_create_autocmd('LspAttach', {
+        callback = function(args)
+          local bufnr = args.buf
+          local bufopts = { noremap=true, silent=true, buffer=bufnr }
+          vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+          vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+          vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+          vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+          vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+          vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+          vim.keymap.set('n', '<space>wl', function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+          end, bufopts)
+          vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+          vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+          vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+          vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+          vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+        end,
+      })
 
-      -- Configure LSP servers
-      lspconfig.gopls.setup{
-        on_attach = on_attach,
+      -- Configure LSP servers using new API
+      vim.lsp.config('gopls', {
+        cmd = { 'gopls' },
+        filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+        root_markers = { 'go.work', 'go.mod', '.git' },
         settings = {
           gopls = {
             analyses = {
@@ -106,10 +109,12 @@
             gofumpt = true,
           },
         },
-      }
+      })
 
-      lspconfig.pyright.setup{
-        on_attach = on_attach,
+      vim.lsp.config('pyright', {
+        cmd = { 'pyright-langserver', '--stdio' },
+        filetypes = { 'python' },
+        root_markers = { 'pyrightconfig.json', 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'Pipfile', '.git' },
         settings = {
           python = {
             analysis = {
@@ -119,10 +124,12 @@
             }
           }
         }
-      }
+      })
 
-      lspconfig.yamlls.setup{
-        on_attach = on_attach,
+      vim.lsp.config('yamlls', {
+        cmd = { 'yaml-language-server', '--stdio' },
+        filetypes = { 'yaml', 'yaml.docker-compose', 'yaml.gitlab' },
+        root_markers = { '.git' },
         settings = {
           yaml = {
             schemas = {
@@ -136,7 +143,10 @@
             },
           },
         },
-      }
+      })
+
+      -- Enable LSP servers
+      vim.lsp.enable({ 'gopls', 'pyright', 'yamlls' })
       local blink = require("blink.cmp")
       blink.setup {
         keymap = { preset = "super-tab" },
@@ -340,7 +350,7 @@
       end
 
       -- Set theme on startup
-      vim.defer_fn(set_theme_from_system, 10)
+      set_theme_from_system()
 
       -- Auto-update when focus returns to Neovim
       vim.api.nvim_create_autocmd("FocusGained", {
