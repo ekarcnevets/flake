@@ -6,6 +6,7 @@
     ../configs/aerospace.nix
     ../configs/nvim.nix
     ../configs/starship.nix
+    ../configs/scripts.nix
   ];
 
   home.username = "steven";
