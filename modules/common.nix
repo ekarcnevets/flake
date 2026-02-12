@@ -4,6 +4,7 @@ with pkgs; [
   # Core utilities
   coreutils
   curl
+  openssl
   wget
 
   # Version control
