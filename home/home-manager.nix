@@ -198,5 +198,6 @@
     enable = true;
     enableZshIntegration = false; # Using evalcache for faster init
     nix-direnv.enable = true;
+    config.whitelist.prefix = [ "/Users/steven/conductor/workspaces" ];
   };
 }
