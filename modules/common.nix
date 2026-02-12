@@ -2,6 +2,7 @@
 
 with pkgs; [
   # Core utilities
+  _1password-cli # 1Password CLI
   coreutils
   curl
   openssl
