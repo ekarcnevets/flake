@@ -4,12 +4,13 @@
   programs.neovim = {
     enable = true;
     extraPackages = with pkgs; [
-      tree-sitter
-      ripgrep
       fd
-      lua-language-server
       gopls
+      lua-language-server
+      nil
       pyright
+      ripgrep
+      tree-sitter
       yaml-language-server
     ];
 
@@ -145,8 +146,21 @@
         },
       })
 
+      vim.lsp.config('nil_ls', {
+        cmd = { 'nil' },
+        filetypes = { 'nix' },
+        root_markers = { 'flake.nix', 'flake.lock', '.git' },
+        settings = {
+          ['nil'] = {
+            formatting = {
+              command = { 'nixpkgs-fmt' },
+            },
+          },
+        },
+      })
+
       -- Enable LSP servers
-      vim.lsp.enable({ 'gopls', 'pyright', 'yamlls' })
+      vim.lsp.enable({ 'gopls', 'nil_ls', 'pyright', 'yamlls' })
       local blink = require("blink.cmp")
       blink.setup {
         keymap = { preset = "super-tab" },
