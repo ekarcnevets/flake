@@ -21,6 +21,7 @@
     # Dock settings
     dock = {
       autohide = true;
+      expose-group-apps = true;
       persistent-apps = [ ];
       persistent-others = [ ];
       show-recents = false;
