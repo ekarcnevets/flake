@@ -21,7 +21,7 @@
       lualine-nvim
       github-nvim-theme
       gruvbox-nvim
-      catppuccin-nvim
+      fleet-theme-nvim
       blink-cmp
       friendly-snippets
       telescope-fzf-native-nvim
@@ -281,12 +281,22 @@
         }
       }
 
-      require("catppuccin").setup({
-        flavour = "mocha", -- latte, frappe, macchiato, mocha
-        transparent_background = false,
-        integrations = {
-          snacks = true,
-        }
+      require("fleet-theme").setup({
+        undercurl = true,
+        underline = true,
+        bold = true,
+        italic = true,
+        strikethrough = true,
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = false,
+        invert_intend_guides = false,
+        inverse = true,
+        contrast = "hard", -- can be "hard", "soft" or empty string
+        palette_overrides = {},
+        overrides = {},
+        dim_inactive = false,
+        transparent_mode = false,
       })
 
       require("nvim-surround").setup({})
@@ -341,7 +351,7 @@
         if result:match("true") then
           vim.o.background = 'dark'
           vim.cmd('hi clear')
-          vim.cmd('colorscheme catppuccin-mocha')
+          vim.cmd('colorscheme fleet')
         else
           vim.o.background = 'light'
           vim.cmd('hi clear')
@@ -360,6 +370,7 @@
       -- Manual refresh command
       vim.api.nvim_create_user_command('RefreshTheme', set_theme_from_system, {})
       vim.opt.number = true
+      vim.opt.relativenumber = true
       vim.opt.showmatch = true
       vim.opt.splitright = true
       vim.opt.splitbelow = true
