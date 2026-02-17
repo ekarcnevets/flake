@@ -381,6 +381,9 @@
       vim.opt.ignorecase = true
       vim.opt.smartcase = true
       vim.opt.mouse = ""
+      if vim.env.TERM_PROGRAM ~= "ghostty" then
+        vim.opt.guicursor = ""
+      end
       vim.opt.hlsearch = true
       vim.opt.incsearch = true
       vim.opt.modelines = 5
