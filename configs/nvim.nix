@@ -342,20 +342,9 @@
       vim.keymap.set('n', '<Leader>tp', ':tabprevious<CR>')
       vim.keymap.set('n', '<Leader>bd', function() Snacks.bufdelete() end, { desc = "Delete buffer" })
       vim.keymap.set('n', '<Leader>bo', function() Snacks.bufdelete.other() end, { desc = "Delete other buffers" })
-      vim.cmd([[
-          function! s:statusline_expr()
-              let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : '''}"
-              let ro  = "%{&readonly ? '[RO] ' : '''}"
-              let ft  = "%{len(&filetype) ? '['.&filetype.'] ' : '''}"
-              let fug = "%{exists('g:loaded_fugitive') ? fugitive#statusline() : '''}"
-              let sep = ' %= '
-              let pos = ' %-5(%l:%c%V%) '
-              let pct = ' %P '
-
-              return ' [%n] %.40F %<'.mod.ro.ft.fug.sep.pos.'%*'.pct
-            endfunction
-            let &statusline = s:statusline_expr()
-      ]])
+      local mode_names = {n='N',i='I',v='V',V='VL',['\22']='VB',c='C',R='R',s='S',S='SL',['\19']='SB',t='T'}
+      function _G.stl_mode() return mode_names[vim.fn.mode()] or '?' end
+      vim.o.statusline = " %{v:lua.stl_mode()} [%n] %.40F %<%m%r%y %= %-5(%l:%c%V%) %P "
 
       -- Auto-switch theme based on macOS appearance (Tahoe 26 with Auto mode support)
       local function set_theme_from_system()
