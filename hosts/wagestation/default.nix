@@ -3,5 +3,6 @@
 
   homebrew.casks = [
     "microsoft-teams"
+    "ngrok"
   ];
 }
