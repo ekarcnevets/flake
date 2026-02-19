@@ -231,8 +231,8 @@ if.app-id = 'company.thebrowser.Browser'
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
-if.app-id = 'com.exafunction.windsurf'
-run = 'move-node-to-workspace 2'
+if.app-id = 'app.zen-browser.zen'
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'dev.zed.Zed'
@@ -291,11 +291,7 @@ if.app-id = 'com.mitchellh.ghostty'
 run = ['layout floating', 'move-node-to-workspace Q']
 
 [[on-window-detected]]
-if.app-id = 'dev.warp.Warp-Stable'
-run = 'move-node-to-workspace Q'
-
-[[on-window-detected]]
-if.app-id = 'com.jetbrains.datagrip'
+if.app-id = 'com.conductor.app'
 run = 'move-node-to-workspace Q'
 
 [workspace-to-monitor-force-assignment]
