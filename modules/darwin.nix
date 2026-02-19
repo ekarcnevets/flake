@@ -130,6 +130,7 @@
       "spotify"
       "tuple"
       "zed"
+      "zen@twilight"
     ];
 
     masApps = {
