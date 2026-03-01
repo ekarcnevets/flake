@@ -20,6 +20,7 @@ window-theme = system
 # Keybinds
 keybind = super+shift+f=write_screen_file:open
 keybind = shift+enter=text:\n
+keybind = global:alt+escape=toggle_quick_terminal
 macos-option-as-alt = right
 
 # Misc
