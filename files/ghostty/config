@@ -3,7 +3,7 @@ font-family = "GoMono Nerd Font"
 font-size = 14
 
 # Display
-theme = light:Atom One Light,dark:Atom
+theme = light:Xcode Light,dark:Atom
 custom-shader = ./shaders/cursor_smear_fade.glsl
 
 # Cursor
