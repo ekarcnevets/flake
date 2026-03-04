@@ -48,10 +48,6 @@ with pkgs; [
   kubie # Kubernetes context/namespace switcher
   teleport # Teleport shell (tsh) for secure access
 
-  # AWS tools
-  awscli2 # AWS CLI
-  aws-sam-cli # AWS SAM CLI
-
   # Zsh plugins
   zsh-vi-mode
   zsh-fzf-tab
