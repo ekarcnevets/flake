@@ -27,6 +27,7 @@ with pkgs; [
 
   # Development tools
   fzf
+  gum # Charm TUI components (used by defaults-to-nix)
   tree
   btop # Better system monitor than htop
   biome # Fast formatter for JS/TS/JSON/CSS
