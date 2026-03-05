@@ -188,6 +188,27 @@
               --query "$*"
         )
 
+        # Wrap nix shell to set IN_NIX_SHELL so Starship detects it
+        nix() {
+          if [[ "$1" != "shell" ]]; then
+            command nix "$@"
+            return
+          fi
+
+          local args=("''${@:2}") pkgs=() purity=impure i
+          local consuming=(--arg --argstr --override-input --update-input --expr -I)
+
+          for (( i=1; i<=''${#args}; i++ )); do
+            local arg=''${args[i]}
+            (( ''${consuming[(Ie)$arg]} )) && (( i++ )) && continue
+            [[ $arg == --pure ]] && purity=pure && continue
+            [[ $arg == -* ]] && continue
+            pkgs+=("''${arg##*#}")
+          done
+
+          IN_NIX_SHELL=$purity name="''${(j:, :)pkgs}" command nix "$@"
+        }
+
         # Use evalcache for slow initialization commands (speeds up shell startup)
         _evalcache direnv hook zsh
         _evalcache starship init zsh
