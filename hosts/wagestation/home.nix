@@ -1,4 +1,5 @@
-{ lib, ... }: {
+{ lib, pkgs, ... }: {
+  home.packages = [ pkgs.vault ];
   programs.git.includes = [
     {
       condition = "gitdir:/Users/steven/src/github.com/nscaledev/";
