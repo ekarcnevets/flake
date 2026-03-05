@@ -1,4 +1,6 @@
 { lib, ... }: {
+  home.file.".config/1Password/ssh/agent.toml".source = ./agent.toml;
+  home.file.".ssh/github_ekarcnevets_moon_1pw.pub".text = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJOkkyB57orOxVPLOZ8YhMDTmvqj5b2fi0Cy5DRlwuEZ";
   home.file.".ssh/config".source = ./ssh-config;
   home.file.".ssh/allowed_signers".source = ./allowed-signers;
 

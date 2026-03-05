@@ -14,19 +14,11 @@
   home.homeDirectory = "/Users/steven";
   home.stateVersion = "25.11";
 
-  # 1Password SSH agent configuration
-  home.file.".config/1Password/ssh/agent.toml".source = ../files/1password/agent.toml;
-
-
   # Fonts
   home.packages = with pkgs; [
     nerd-fonts.blex-mono
     nerd-fonts.go-mono
   ];
-
-  # Work-specific git config
-  home.file."src/github.com/nscaledev/.gitconfig".source = ../files/git/nscaledev.gitconfig;
-  home.file."src/github.com/stevencrake-nscale/.gitconfig".source = ../files/git/stevencrake-nscale.gitconfig;
 
   programs.zsh = {
     enable = true;

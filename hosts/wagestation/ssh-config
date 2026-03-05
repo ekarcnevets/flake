@@ -1,19 +1,11 @@
 Include /Users/steven/.config/colima/ssh_config
 Include /Users/steven/.colima/ssh_config
 
-# Default host – personal GitHub
+# GitHub
 Host github.com
   User git
   IdentityAgent ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
-  IdentityFile ~/.ssh/github_ekarcnevets_moon_1pw.pub
-  IdentitiesOnly yes
-
-# Nscale GitHub – use different key
-Host github.com-nscale
-  HostName github.com
-  User git
-  IdentityAgent ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
-  IdentityFile ~/.ssh/github_nscale_moon_1pw.pub
+  IdentityFile ~/.ssh/github_ekarcnevets_wagestation_1pw.pub
   IdentitiesOnly yes
 
 # Fallback
