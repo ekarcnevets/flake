@@ -346,12 +346,12 @@
       function _G.stl_mode() return mode_names[vim.fn.mode()] or '?' end
       vim.o.statusline = " %{v:lua.stl_mode()} [%n] %.40F %<%m%r%y %= %-5(%l:%c%V%) %P "
 
-      -- Auto-switch theme based on macOS appearance (Tahoe 26 with Auto mode support)
+      -- Auto-switch theme based on macOS appearance
       local function set_theme_from_system()
-        -- Use AppleScript which works even when Auto mode is enabled
-        local result = vim.fn.system("osascript -e 'tell application \"System Events\" to tell appearance preferences to get dark mode'")
+        -- defaults read doesn't require Apple Events authorization (works in sandboxed terminals)
+        local result = vim.fn.system("defaults read -g AppleInterfaceStyle 2>/dev/null")
 
-        if result:match("true") then
+        if result:match("Dark") then
           vim.o.background = 'dark'
           vim.cmd('hi clear')
           vim.cmd('colorscheme fleet')
