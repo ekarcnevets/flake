@@ -198,7 +198,9 @@
             pkgs+=("''${arg##*#}")
           done
 
-          IN_NIX_SHELL=$purity name="''${(j:, :)pkgs}" command nix "$@"
+          local new_name="''${(j:, :)pkgs}"
+          [[ -n "$IN_NIX_SHELL" && -n "$name" ]] && new_name="$name + $new_name"
+          IN_NIX_SHELL=$purity name="$new_name" command nix "$@"
         }
 
         # Use evalcache for slow initialization commands (speeds up shell startup)
