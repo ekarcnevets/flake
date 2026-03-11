@@ -22,6 +22,7 @@ with pkgs; [
   # Modern CLI replacements
   ripgrep # better grep
   fd # better find
+  sd # better sed
   bat # better cat
   eza # better ls
 
