@@ -5,7 +5,7 @@
 
   homebrew.brews = [
     "azure-cli"
-    "azure-functions-core-tools"
+    "azure/functions/azure-functions-core-tools@4"
   ];
 
   homebrew.casks = [
