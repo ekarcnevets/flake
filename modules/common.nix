@@ -25,6 +25,7 @@ with pkgs; [
   sd # better sed
   bat # better cat
   eza # better ls
+  xh # better curl
 
   # Development tools
   fzf
