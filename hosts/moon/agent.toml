@@ -1,6 +1,3 @@
 [[ssh-keys]]
 item = "github_ekarcnevets_moon_1pw"
 vault = "Private"
-
-[[ssh-keys]]
-vault = "Private"
