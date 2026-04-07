@@ -21,8 +21,10 @@
     },
     "theme": {
         "mode": "system",
-        "light": "Fleet Light",
-        "dark": "Fleet Dark"
+        // "light": "Fleet Light",
+        // "dark": "Fleet Dark"
+        "light": "Claude Light",
+        "dark": "Claude Dark"
     },
     "theme_overrides": {
         "Fleet Light": {
