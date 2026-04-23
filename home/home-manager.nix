@@ -111,6 +111,9 @@
       # Kubernetes
       KUBECTL_EXTERNAL_DIFF = "dyff between --omit-header --set-exit-code";
 
+      # Teleport
+      TELEPORT_CDN_BASE_URL = "https://cdn.teleport.dev";
+
       # Docker/Testcontainers (for colima)
       DOCKER_HOST = "unix://$HOME/.config/colima/default/docker.sock";
       TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE = "/var/run/docker.sock";

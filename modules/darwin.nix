@@ -111,17 +111,25 @@
       "nikitabobko/tap"
     ];
 
+    brews = [
+      "vault"
+      "vercel-cli"
+    ];
+
     casks = [
       "1password"
       "aerospace"
       "arc"
       "betterdisplay"
+      "claude"
       "claude-code"
       "codex"
       "conductor"
       "ghostty"
+      "google-chrome"
       "linear-linear"
       "linearmouse"
+      "ngrok"
       "notion"
       "notion-calendar"
       "protonvpn"
