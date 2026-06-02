@@ -127,6 +127,7 @@
       "conductor"
       "ghostty"
       "google-chrome"
+      "granola"
       "linear-linear"
       "linearmouse"
       "ngrok"
