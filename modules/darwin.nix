@@ -5,6 +5,13 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
 
+  # Pin biome to 2.4.12 to match the node repo (unstable has moved ahead)
+  nixpkgs.overlays = [
+    (final: prev: {
+      biome = inputs.nixpkgs-biome.legacyPackages.${prev.stdenv.hostPlatform.system}.biome;
+    })
+  ];
+
   # Track flake revision
   system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
 
