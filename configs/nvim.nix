@@ -3,6 +3,8 @@
 {
   programs.neovim = {
     enable = true;
+    withRuby = false;
+    withPython3 = true;
     extraPackages = with pkgs; [
       fd
       gopls

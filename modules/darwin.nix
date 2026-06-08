@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, lib, ... }: {
   # Let Determinate Nix handle Nix configuration
   nix.enable = false;
 
@@ -110,16 +110,26 @@
     remapCapsLockToControl = true;
   };
 
+  # Trust external taps before brew bundle runs (brew 5.x requires explicit trust).
+  # lib.mkBefore prepends this into the homebrew activation script before the bundle runs.
+  system.activationScripts.homebrew.text = lib.mkBefore ''
+    if [ -f /opt/homebrew/bin/brew ]; then
+      sudo --preserve-env=PATH --user=steven --set-home /opt/homebrew/bin/brew trust nikitabobko/tap 2>/dev/null || true
+      sudo --preserve-env=PATH --user=steven --set-home /opt/homebrew/bin/brew trust hashicorp/tap 2>/dev/null || true
+    fi
+  '';
+
   # Homebrew configuration
   homebrew = {
     enable = true;
 
     taps = [
       "nikitabobko/tap"
+      "hashicorp/tap"
     ];
 
     brews = [
-      "vault"
+      "hashicorp/tap/vault"
       "vercel-cli"
     ];
 
@@ -135,7 +145,7 @@
       "ghostty"
       "google-chrome"
       "granola"
-      "linear-linear"
+      "linear"
       "linearmouse"
       "ngrok"
       "notion"
@@ -155,6 +165,7 @@
 
     onActivation = {
       autoUpdate = true;
+      upgrade = true;
       cleanup = "zap";
     };
   };

@@ -141,16 +141,18 @@
         # Only rebuild completions once per 24 hours for performance
         autoload -Uz +X compaudit compinit
         autoload -Uz +X bashcompinit
+        # Remove stale hostname-based completion dumps
+        rm -f $HOME/.zcompdump-*(N) 2>/dev/null
         setopt EXTENDEDGLOB
         for dump in $HOME/.zcompdump(N.mh+24); do
-          compinit
+          compinit -d ~/.zcompdump
           bashcompinit
           if [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
             zcompile "$dump"
           fi
         done
         unsetopt EXTENDEDGLOB
-        compinit -C
+        compinit -C -d ~/.zcompdump
         bashcompinit
       '')
 
