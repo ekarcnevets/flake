@@ -34,6 +34,7 @@ with pkgs; [
   btop # Better system monitor than htop
   biome # Fast formatter for JS/TS/JSON/CSS
   gnumake # GNU Make build tool
+  pi-coding-agent # Pi coding agent CLI (pi.dev)
 
   # System Python (for system scripts and tools)
   python3
