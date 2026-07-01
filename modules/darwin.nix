@@ -130,6 +130,7 @@
 
     brews = [
       "hashicorp/tap/vault"
+      "opencode"
       "vercel-cli"
     ];
 
