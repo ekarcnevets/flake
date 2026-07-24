@@ -46,6 +46,7 @@ with pkgs; [
 
   # Kubernetes tools
   kubectl # Kubernetes CLI
+  kubectl-cnpg # CloudNativePG plugin for kubectl (kubectl cnpg)
   kubernetes-helm # Helm package manager
   helm-docs # Generate docs from Helm charts
   k9s # Terminal UI for Kubernetes
