@@ -20,6 +20,9 @@
     nerd-fonts.go-mono
   ];
 
+  # krew-installed kubectl plugins
+  home.sessionPath = [ "$HOME/.krew/bin" ];
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
