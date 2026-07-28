@@ -46,7 +46,12 @@ with pkgs; [
 
   # Kubernetes tools
   kubectl # Kubernetes CLI
-  krew # kubectl plugin manager (kubectl krew)
+  krew # kubectl plugin manager
+  # kubectl finds plugins as `kubectl-<name>`, but nixpkgs only ships `krew`
+  (runCommand "kubectl-krew" { } ''
+    mkdir -p $out/bin
+    ln -s ${krew}/bin/krew $out/bin/kubectl-krew
+  '')
   kubectl-cnpg # CloudNativePG plugin for kubectl (kubectl cnpg)
   kubernetes-helm # Helm package manager
   helm-docs # Generate docs from Helm charts
