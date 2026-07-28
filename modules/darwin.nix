@@ -1,4 +1,4 @@
-{ pkgs, inputs, lib, ... }: {
+{ inputs, ... }: {
   # Let Determinate Nix handle Nix configuration
   nix.enable = false;
 
@@ -110,23 +110,19 @@
     remapCapsLockToControl = true;
   };
 
-  # Trust external taps before brew bundle runs (brew 5.x requires explicit trust).
-  # lib.mkBefore prepends this into the homebrew activation script before the bundle runs.
-  system.activationScripts.homebrew.text = lib.mkBefore ''
-    if [ -f /opt/homebrew/bin/brew ]; then
-      sudo --preserve-env=PATH --user=steven --set-home /opt/homebrew/bin/brew trust nikitabobko/tap 2>/dev/null || true
-      sudo --preserve-env=PATH --user=steven --set-home /opt/homebrew/bin/brew trust hashicorp/tap 2>/dev/null || true
-    fi
-  '';
-
   # Homebrew configuration
   homebrew = {
     enable = true;
 
-    taps = [
-      "nikitabobko/tap"
-      "hashicorp/tap"
-    ];
+    # Taps live in extraConfig so they can carry `trusted: true`. Brew 5.x+ requires
+    # explicit trust for third-party taps, and `brew bundle --cleanup` resets the trust
+    # store to exactly what the Brewfile declares — so trusting out-of-band (e.g. from an
+    # activation script) gets wiped mid-activation and the cleanup then fails to load them.
+    # nix-darwin's `homebrew.taps` cannot emit the option, hence the verbatim lines.
+    extraConfig = ''
+      tap "nikitabobko/tap", trusted: true
+      tap "hashicorp/tap", trusted: true
+    '';
 
     brews = [
       "hashicorp/tap/vault"
@@ -168,6 +164,8 @@
       autoUpdate = true;
       upgrade = true;
       cleanup = "zap";
+      # Brew 6.x asks before cleaning up (HOMEBREW_ASK defaults on), which stalls activation.
+      extraFlags = [ "--force-cleanup" ];
     };
   };
 
