@@ -101,13 +101,17 @@ hostname:
 		printf '\033[1;34m==> Hostname set to "%s"\033[0m\n' "$$target"; \
 	fi
 
+# Resolve darwin-rebuild, falling back to the stable profile path when
+# /run/current-system has been wiped (e.g. after a macOS major update).
+DARWIN_REBUILD = $$(command -v darwin-rebuild || echo /nix/var/nix/profiles/system/sw/bin/darwin-rebuild)
+
 # Build and activate the configuration
 switch:
-	darwin-rebuild switch --flake .#$$(hostname | cut -d. -f1)
+	$(DARWIN_REBUILD) switch --flake .#$$(hostname | cut -d. -f1)
 
 # Build without activating
 build:
-	darwin-rebuild build --flake .#$$(hostname | cut -d. -f1)
+	$(DARWIN_REBUILD) build --flake .#$$(hostname | cut -d. -f1)
 
 # Update flake inputs
 update:
