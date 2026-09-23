@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ pkgs, ... }: {
   # Tig configuration
   home.file.".tigrc".source = ../files/tigrc;
 
@@ -9,7 +9,7 @@
       user = {
         name = "Steven Crake";
         email = "ekarcnevets@gmail.com";
-        signingkey = lib.mkDefault "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJOkkyB57orOxVPLOZ8YhMDTmvqj5b2fi0Cy5DRlwuEZ";
+        # signingkey is set per-host in home/github.nix
       };
       alias = {
         addm = "!git ls-files --deleted --modified --other --exclude-standard | fzf -0 -m --preview 'git diff --color=always {-1}' | xargs -r git add";
