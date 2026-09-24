@@ -73,8 +73,8 @@
       "com.apple.trackpad.scaling" = 1.5;
       # Disable autocorrect
       NSAutomaticSpellingCorrectionEnabled = false;
-      # Function keys as standard function keys
-      "com.apple.keyboard.fnState" = true;
+      # Top-row keys control brightness/media; hold fn for F1-F12
+      "com.apple.keyboard.fnState" = false;
       # Full keyboard access for all controls
       AppleKeyboardUIMode = 3;
       # Disable press-and-hold for keys (enables key repeat for vim)
