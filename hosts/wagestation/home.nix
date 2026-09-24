@@ -1,10 +1,6 @@
 { lib, pkgs, ... }: {
   home.packages = [ pkgs.vault ];
 
-  targets.darwin.defaults.NSGlobalDomain.NSUserDictionaryReplacementItems = [
-    { on = 1; replace = "@@"; "with" = "steven.crake@nscale.com"; }
-  ];
-
   programs.git.includes = [
     { condition = "gitdir:/Users/steven/src/github.com/nscaledev/"; contents.user.email = "steven.crake@nscale.com"; }
   ];
