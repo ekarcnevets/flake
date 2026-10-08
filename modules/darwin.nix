@@ -5,10 +5,19 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
 
-  # Pin biome to 2.4.12 to match the node repo (unstable has moved ahead)
   nixpkgs.overlays = [
     (final: prev: {
+      # Pin biome to 2.4.12 to match the node repo (unstable has moved ahead)
       biome = inputs.nixpkgs-biome.legacyPackages.${prev.stdenv.hostPlatform.system}.biome;
+
+      # 1Password CLI beta for `op environment` (not yet in a stable release)
+      _1password-cli = prev._1password-cli.overrideAttrs (_: rec {
+        version = "2.41.0-beta.01";
+        src = prev.fetchurl {
+          url = "https://cache.agilebits.com/dist/1P/op2/pkg/v${version}/op_apple_universal_v${version}.pkg";
+          hash = "sha256-Sf37hxW/rAQWVw5KYJgK5ayeVAPK+afXUw6/ZPAc/9c=";
+        };
+      });
     })
   ];
 
