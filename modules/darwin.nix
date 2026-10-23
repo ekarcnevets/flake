@@ -142,7 +142,6 @@
     casks = [
       "1password"
       "aerospace"
-      "arc"
       "betterdisplay"
       "claude"
       "claude-code"
