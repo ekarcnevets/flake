@@ -26,6 +26,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit hostname; };
               home-manager.users.steven = {
                 imports = [ ./home/darwin.nix ] ++ extraHomeModules;
               };
@@ -37,7 +38,9 @@
       # Formatter for 'nix fmt'
       formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixpkgs-fmt;
 
-      darwinConfigurations = {
+      darwinConfigurations = rec {
+        # wagestation under its Jamf-managed hostname
+        NS-Mac-HWP70THWKH = wagestation;
         wagestation = mkDarwinSystem {
           hostname = "wagestation";
           extraHomeModules = [ ./hosts/wagestation/home.nix ];

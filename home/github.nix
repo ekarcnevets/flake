@@ -1,10 +1,9 @@
-{ osConfig, ... }:
+{ hostname, ... }:
 # GitHub SSH auth + commit signing via the 1Password agent.
 # Per-host key resolved from that machine's 1Password account:
 #   - moon        -> personal account, "Private" vault
 #   - wagestation -> Nscale account,   "Employee" vault
 let
-  hostname = osConfig.networking.hostName;
   hosts = {
     moon = {
       pub = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJOkkyB57orOxVPLOZ8YhMDTmvqj5b2fi0Cy5DRlwuEZ";
