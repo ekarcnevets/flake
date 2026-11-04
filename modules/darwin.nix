@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, lib, ... }: {
   # Let Determinate Nix handle Nix configuration
   nix.enable = false;
 
@@ -95,13 +95,21 @@
       NSWindowShouldDragOnGesture = true;
     };
 
+    # Applies to ⇧⌘5; the ⌘3/⌘4 family is bound to Shottr instead
+    screencapture = {
+      location = "/Users/steven/Screenshots";
+      type = "png";
+      disable-shadow = true;
+      show-thumbnail = false; # Land the file immediately, no floating preview
+    };
+
     # Disable Siri
     CustomUserPreferences = {
       "com.apple.Siri" = {
         "UAProfileCheckingStatus" = 0;
         "siriEnabled" = 0;
       };
-      # Disable screenshot keyboard shortcuts
+      # Shottr binds these, so the native captures must release them
       "com.apple.symbolichotkeys" = {
         AppleSymbolicHotKeys = {
           "28" = { enabled = false; }; # Save picture of screen as a file (⇧⌘3)
@@ -138,8 +146,8 @@
       "opencode"
     ];
 
+    # Wanted on every machine; anything host-specific lives in hosts/.
     casks = [
-      "1password"
       "aerospace"
       "betterdisplay"
       "claude"
@@ -148,30 +156,22 @@
       "conductor"
       "ghostty"
       "google-chrome"
-      "granola"
       "linear"
       "linearmouse"
-      "ngrok"
       "notion"
       "notion-calendar"
-      "protonvpn"
       "shottr"
       "slack"
       "spotify"
       "thebrowsercompany-dia"
-      "tuple"
       "vercel"
       "zed"
     ];
 
-    masApps = {
-      "Amphetamine" = 937984704;
-    };
-
     onActivation = {
-      autoUpdate = true;
-      upgrade = true;
-      cleanup = "zap";
+      autoUpdate = lib.mkDefault true;
+      upgrade = lib.mkDefault true;
+      cleanup = lib.mkDefault "zap";
     };
   };
 
