@@ -136,7 +136,6 @@
     brews = [
       "hashicorp/tap/vault"
       "opencode"
-      "vercel-cli"
     ];
 
     casks = [
@@ -161,6 +160,7 @@
       "spotify"
       "thebrowsercompany-dia"
       "tuple"
+      "vercel"
       "zed"
     ];
 
