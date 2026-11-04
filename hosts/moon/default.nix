@@ -5,7 +5,6 @@
     "plex"
     "screen-studio"
     "signal"
-    "thebrowsercompany-dia"
     "whatsapp"
   ];
 }

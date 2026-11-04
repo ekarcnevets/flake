@@ -159,6 +159,7 @@
       "shottr"
       "slack"
       "spotify"
+      "thebrowsercompany-dia"
       "tuple"
       "zed"
     ];
