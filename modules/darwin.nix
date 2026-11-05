@@ -163,7 +163,6 @@
       "shottr"
       "slack"
       "spotify"
-      "thebrowsercompany-dia"
       "vercel"
       "zed"
     ];

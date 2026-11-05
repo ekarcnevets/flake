@@ -10,6 +10,7 @@
       "protonvpn"
       "screen-studio"
       "signal"
+      "thebrowsercompany-dia"
       "whatsapp"
     ];
 
