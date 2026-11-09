@@ -8,6 +8,7 @@
     ../configs/starship.nix
     ../configs/scripts.nix
     ../configs/app-defaults.nix
+    ../configs/agents.nix
   ];
 
   home.username = "steven";
