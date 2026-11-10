@@ -43,9 +43,12 @@ in
     vault = "${h.vault}"
   '';
 
-  # Trust every host's signing key so commits verify locally on any machine.
+  # Trust every host's signing key for both identities, so commits verify locally on any machine.
+  # The key is not bound to an address; this file is what pairs an email with a key.
   home.file.".ssh/allowed_signers".text = ''
     ekarcnevets@gmail.com ${hosts.moon.pub}
     ekarcnevets@gmail.com ${hosts.wagestation.pub}
+    steven.crake@nscale.com ${hosts.moon.pub}
+    steven.crake@nscale.com ${hosts.wagestation.pub}
   '';
 }
