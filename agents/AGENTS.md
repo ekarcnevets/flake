@@ -11,13 +11,16 @@ If you need to run an executable like uv or npm etc, check if you are in a diren
 
 Code comments must be clear, concise, and free of AI waffle or storytelling. Explain why, not what. Only add a comment where the code is genuinely unclear or the comment adds real value; never narrate the change or the PR's history, since that stops making sense after merge. When delegating to subagents, pass this rule on.
 
-PR descriptions and commit messages follow the same standard: clear, concise, no AI waffle. Say what changed and why, plus what a reviewer needs to check; leave out process narration and restating the diff.
+PR descriptions stay clear and concise, with no AI waffle. Say what changed and why, plus what a reviewer needs to check. Leave out process narration and restating the diff.
 
 When giving the user a PR link, format it as a hyperlinked title: `[<PR title>](<url>)`.
 
 @~/.claude/SOUL.md
 
-# Git Preferences
+# Git
 
-- Do not add Co-Authored-By line for Claude in git commits
-- Do not add AI co-authorship attribution in git history.
+Match the commit style already in the repo. Before writing a message, read recent `git log` and any commitlint, release, or contributing config, then follow that type vocabulary, scope usage, casing, and body shape. Most repos use Conventional Commits (`feat:`, `fix:`, `chore:`, `refactor:`, and so on); use that form when the history does. If the history is empty or inconsistent, use Conventional Commits.
+
+Keep the subject and body clear and concise: what changed and why. No AI waffle, no process narration, no restating the diff. When the repo squash-merges, the PR title becomes the commit, so give it the same form.
+
+- Do not add a Co-Authored-By trailer for Claude, Codex, Cursor, or another agent. A trailer naming the human user is fine when you were already going to add one; do not add one by default.
