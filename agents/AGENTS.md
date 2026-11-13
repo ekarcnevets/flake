@@ -17,6 +17,12 @@ When giving the user a PR link, format it as a hyperlinked title: `[<PR title>](
 
 @~/.claude/SOUL.md
 
+# Act
+
+When a fix or change is done and verified, commit it and push.
+
+Ask only when the next step is destructive, or when it leaves git (deploys, messages, access requests) and the standing rules for that system say to ask.
+
 # Git
 
 Match the commit style already in the repo. Before writing a message, read recent `git log` and any commitlint, release, or contributing config, then follow that type vocabulary, scope usage, casing, and body shape. Most repos use Conventional Commits (`feat:`, `fix:`, `chore:`, `refactor:`, and so on); use that form when the history does. If the history is empty or inconsistent, use Conventional Commits.
