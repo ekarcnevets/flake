@@ -128,6 +128,10 @@
         # Homebrew
         eval "$(/opt/homebrew/bin/brew shellenv)"
 
+        # Nix completion dirs are symlinks, so Oh My Zsh's compaudit reruns every
+        # startup and flags them. Skip it and let Oh My Zsh own compinit.
+        ZSH_DISABLE_COMPFIX=true
+
         # zsh-vi-mode: Initialize when sourced
         ZVM_INIT_MODE=sourcing
 
@@ -136,35 +140,18 @@
       '')
 
       (lib.mkOrder 550 ''
-        # Completions
+        # Must run before Oh My Zsh snapshots fpath into its compdump.
         if [[ ":$FPATH:" != *":/Users/steven/.zsh/completions:"* ]]; then
           export FPATH="/Users/steven/.zsh/completions:$FPATH"
         fi
-
-        # Only rebuild completions once per 24 hours for performance
-        autoload -Uz +X compaudit compinit
-        autoload -Uz +X bashcompinit
-        # Remove stale hostname-based completion dumps
-        rm -f $HOME/.zcompdump-*(N) 2>/dev/null
-        setopt EXTENDEDGLOB
-        for dump in $HOME/.zcompdump(N.mh+24); do
-          compinit -d ~/.zcompdump
-          bashcompinit
-          if [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
-            zcompile "$dump"
-          fi
-        done
-        unsetopt EXTENDEDGLOB
-        compinit -C -d ~/.zcompdump
-        bashcompinit
       '')
 
       ''
         # SSH keys
         ssh-add -A >/dev/null 2>&1
 
-        # kubectl completion for k alias
-        [[ $commands[kubectl] ]] && complete -o default -F __start_kubectl k
+        # k is an alias; bind it to kubectl's zsh completion after Oh My Zsh's compinit.
+        [[ $commands[kubectl] ]] && compdef k=kubectl
 
         # ripgrep->fzf->vim function
         rfv() (
